@@ -172,16 +172,15 @@ $$\text{Gain} = \frac{1}{2}\left[\frac{G_L^2}{H_L + \lambda} + \frac{G_R^2}{H_R 
 
 3. **Custom implementations educate, libraries deploy**: Building AdaBoost from scratch provides invaluable learning about weight updates and ensemble mechanics. However, scikit-learn's optimized backend delivers superior speed and stability for production.
 
-### 7.2.2 Data & Feature Engineering Lessons
+### Data & Feature Engineering Lessons
 
 ```python
 # Most impactful engineering decisions:
 1. Order-level aggregation (not item-level) → aligns with business units
 2. Domain-aware imputation (Burlington ZIP) → preserves signal without noise
 3. Binary target formulation (≥$300 = High)
-### Prerequisites
 ```
-
+### Prerequisites
 bash
 Python 3.8+
 pip
