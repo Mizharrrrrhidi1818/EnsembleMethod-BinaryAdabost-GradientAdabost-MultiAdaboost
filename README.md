@@ -139,6 +139,7 @@ def classify_order(probability, threshold_low=0.35, threshold_high=0.65):
         return "HUMAN_REVIEW"          # Flag borderline cases for manual review
     else:
         return "STANDARD_PROCESSING"   # Low-confidence predictions follow standard workflow
+```
 
 # ✅ Conclusions
 
