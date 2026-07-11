@@ -16,7 +16,7 @@ This project implements ensemble learning methods to classify retail sales order
 
 # 🔬 Methodology
 
-## 2.1 Overall Research Pipeline
+## Overall Research Pipeline
 
 Our methodology follows a structured, reproducible machine learning workflow designed to balance **educational transparency** with **production readiness**:
 
@@ -37,7 +37,7 @@ graph TD
 
 ## 3.1 Dataset Description
 
-### 3.1.1 Source & Scope
+### Source & Scope
 
 | Attribute | Value |
 |-----------|-------|
@@ -47,7 +47,7 @@ graph TD
 | **Geographic Coverage** | United States (4 regions) |
 | **Business Domain** | Retail office supplies & technology |
 
-### 3.1.2 Feature Dictionary
+### Feature Dictionary
 
 | Feature | Type | Description | Example Values |
 |---------|------|-------------|---------------|
@@ -63,7 +63,7 @@ graph TD
 | `Sub-Category` | Categorical | Product sub-category | `Phones`, `Chairs`, `Paper` |
 | `City`, `State`, `Postal Code` | Categorical | Geographic identifiers | `New York`, `NY`, `10001` |
 
-### 3.1.3 Initial Data Statistics
+### Initial Data Statistics
 
 ```python
 # Load and inspect raw data
@@ -71,9 +71,10 @@ print(f"Dataset shape: {df.shape}")
 print(f"\nData types:\n{df.dtypes}")
 print(f"\nMissing values:\n{df.isnull().sum()}")
 print(f"\nSales distribution:\n{df['Sales'].describe()}")
+```
 
 # 📈 Results & Discussion
-## 4.1 Model Performance Summary
+## Model Performance Summary
 
 ### Classification Metrics Comparison
 
