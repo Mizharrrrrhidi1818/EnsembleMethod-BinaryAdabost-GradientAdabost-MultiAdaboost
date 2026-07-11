@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/14fGWpS-TnOgXzdh7SkdFXlwH_c0Segx_?usp=sharing)
 
-> Predicting high-value sales orders using AdaBoost and Gradient Boosting classifiers.
+> Predicting high-value sales orders using AdaBoost, Gradient Boosting  and Multi Boosting classifiers.
 
 ## 🎯 Project Overview
 
