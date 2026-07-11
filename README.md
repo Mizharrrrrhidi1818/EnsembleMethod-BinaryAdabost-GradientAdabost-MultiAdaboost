@@ -8,13 +8,18 @@
 
 ## 🎯 Project Overview
 
-This project implements ensemble learning methods to classify retail sales orders into **Low** (<$300) or **High** (≥$300) value categories. It includes:
+This project implements ensemble learning methods to classify retail sales orders into Low (<$300) or High (≥$300) value categories. Through rigorous mathematical implementation and business-aligned evaluation, we deliver actionable intelligence for inventory planning and customer segmentation.. It includes:
 - ✅ A **from-scratch AdaBoost implementation** for educational transparency
 - ✅ **scikit-learn Gradient Boosting** for production benchmarking
 - ✅ Comprehensive data preprocessing, feature engineering, and evaluation
 - ✅ Business-ready insights for inventory planning and customer segmentation
 
 ## 🚀 Quick Start
+                precision    recall  f1-score   support
+Low Sales           0.79      0.82      0.80       953
+High Sales          0.64      0.60      0.62       522
+
+
 
 ### Prerequisites
 ```bash
