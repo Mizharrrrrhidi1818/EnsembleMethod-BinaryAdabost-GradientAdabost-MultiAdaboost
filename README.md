@@ -174,8 +174,9 @@ $$\text{Gain} = \frac{1}{2}\left[\frac{G_L^2}{H_L + \lambda} + \frac{G_R^2}{H_R 
 
 ### Data & Feature Engineering Lessons
 
-```python
-# Most impactful engineering decisions:
+```
+python
+Most impactful engineering decisions:
 1. Order-level aggregation (not item-level) → aligns with business units
 2. Domain-aware imputation (Burlington ZIP) → preserves signal without noise
 3. Binary target formulation (≥$300 = High)
