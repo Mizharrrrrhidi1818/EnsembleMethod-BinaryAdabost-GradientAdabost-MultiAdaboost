@@ -180,7 +180,9 @@ $$\text{Gain} = \frac{1}{2}\left[\frac{G_L^2}{H_L + \lambda} + \frac{G_R^2}{H_R 
 2. Domain-aware imputation (Burlington ZIP) → preserves signal without noise
 3. Binary target formulation (≥$300 = High)
 ### Prerequisites
-```bash
+```
+
+bash
 Python 3.8+
 pip
 virtualenv (recommended)
