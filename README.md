@@ -14,13 +14,64 @@ This project implements ensemble learning methods to classify retail sales order
 - ✅ Comprehensive data preprocessing, feature engineering, and evaluation
 - ✅ Business-ready insights for inventory planning and customer segmentation
 
-# Methodology
+# 🔬 Methodology
 
-# Data exploration and preprocessing
+## 2.1 Overall Research Pipeline
 
-# Results and Discussions
+Our methodology follows a structured, reproducible machine learning workflow designed to balance **educational transparency** with **production readiness**:
+
+```mermaid
+graph TD
+    A[Raw Transactional Data] --> B[Data Cleaning & Validation]
+    B --> C[Order-Level Aggregation]
+    C --> D[Feature Engineering]
+    D --> E[Target Variable Formulation]
+    E --> F[Train/Test Split with Stratification]
+    F --> G[Model Development]
+    G --> H[Evaluation & Threshold Optimization]
+    H --> I[Business Intelligence Extraction]
+    I --> J[Deployment Recommendations]
+
+# 📊 Data Exploration & Preprocessing
+
+## 3.1 Dataset Description
+
+### 3.1.1 Source & Scope
+
+| Attribute | Value |
+|-----------|-------|
+| **Source** | Kaggle: `rohitsahoo/sales-forecasting` |
+| **Original Records** | 9,994 line-item transactions |
+| **Time Period** | January 2015 – December 2018 |
+| **Geographic Coverage** | United States (4 regions) |
+| **Business Domain** | Retail office supplies & technology |
+
+### 3.1.2 Feature Dictionary
+
+| Feature | Type | Description | Example Values |
+|---------|------|-------------|---------------|
+| `Row ID` | Integer | Unique line-item identifier (dropped) | 1, 2, 3... |
+| `Order ID` | String | Order-level identifier (aggregation key) | `CA-2015-100001` |
+| `Sales` | Float | Revenue per line item | `19.99`, `250.00` |
+| `Order Date` | Date | Transaction timestamp | `2015-01-05` |
+| `Ship Date` | Date | Fulfillment timestamp | `2015-01-08` |
+| `Ship Mode` | Categorical | Delivery method | `Standard Class`, `First Class`, `Same Day` |
+| `Segment` | Categorical | Customer type | `Consumer`, `Corporate`, `Home Office` |
+| `Region` | Categorical | Geographic region | `East`, `West`, `Central`, `South` |
+| `Category` | Categorical | Product category | `Technology`, `Furniture`, `Office Supplies` |
+| `Sub-Category` | Categorical | Product sub-category | `Phones`, `Chairs`, `Paper` |
+| `City`, `State`, `Postal Code` | Categorical | Geographic identifiers | `New York`, `NY`, `10001` |
+
+### 3.1.3 Initial Data Statistics
+
+```python
+# Load and inspect raw data
+print(f"Dataset shape: {df.shape}")
+print(f"\nData types:\n{df.dtypes}")
+print(f"\nMissing values:\n{df.isnull().sum()}")
+print(f"\nSales distribution:\n{df['Sales'].describe()}")
+
 # 📈 Results & Discussion
-
 ## 4.1 Model Performance Summary
 
 ### Classification Metrics Comparison
@@ -87,8 +138,44 @@ def classify_order(probability, threshold_low=0.35, threshold_high=0.65):
     else:
         return "STANDARD_PROCESSING"   # Low-confidence predictions follow standard workflow
 
-# Conclusions
+# ✅ Conclusions
 
+## Summary of Key Findings
+
+### Technical Performance Summary
+
+| Aspect | Finding | Implication |
+|--------|---------|-------------|
+| **Model Accuracy** | Gradient Boosting: **74.10%** vs AdaBoost: 73.97% | Marginal gain, but statistically significant ($p = 0.0003$) |
+| **High-Value Recall** | **60.15%** at threshold 0.50 → **74.20%** at threshold 0.35 | Threshold tuning delivers +14% more high-value orders detected |
+| **Training Efficiency** | Gradient Boosting **3.5× faster** (12.8s vs 45.2s) | Library implementations critical for production scalability |
+| **Binary vs Multi-class** | Binary: 74.10% accuracy vs Multi-class: 42.85% | Simpler, business-aligned targets outperform complex formulations |
+| **Feature Importance** | `Category_Technology`, `Segment_Corporate`, `Ship Mode` dominate | Product and customer attributes drive predictive power more than temporal features |
+
+---
+
+## Technical Conclusions
+
+### Algorithmic Insights
+
+$$\text{Gradient Boosting Advantage} = \underbrace{\text{Second-order optimization}}_{\text{Precise weight updates}} + \underbrace{\text{Regularization}}_{\text{Prevents overfitting}} + \underbrace{\text{Implementation efficiency}}_{\text{Cython backend}}$$
+
+**Key Takeaways:**
+1. **Second-order gradients matter**: Using both $g_i = p_i - y_i$ and $h_i = p_i(1-p_i)$ enables more precise tree splits than AdaBoost's heuristic reweighting.
+
+2. **Regularization prevents overfitting**: The split gain formula with $\lambda$ (L2 penalty) and $\gamma$ (min split loss) ensures every accepted split genuinely improves the objective function:
+
+$$\text{Gain} = \frac{1}{2}\left[\frac{G_L^2}{H_L + \lambda} + \frac{G_R^2}{H_R + \lambda} - \frac{(G_L+G_R)^2}{H_L+H_R+\lambda}\right] - \gamma > 0$$
+
+3. **Custom implementations educate, libraries deploy**: Building AdaBoost from scratch provides invaluable learning about weight updates and ensemble mechanics. However, scikit-learn's optimized backend delivers superior speed and stability for production.
+
+### 7.2.2 Data & Feature Engineering Lessons
+
+```python
+# Most impactful engineering decisions:
+1. Order-level aggregation (not item-level) → aligns with business units
+2. Domain-aware imputation (Burlington ZIP) → preserves signal without noise
+3. Binary target formulation (≥$300 = High)
 ### Prerequisites
 ```bash
 Python 3.8+
